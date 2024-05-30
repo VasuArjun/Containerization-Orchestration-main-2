@@ -1,0 +1,29 @@
+
+serviceAccount:
+  name: my-service-account
+
+configMap:
+  v1:
+    name: my-config-v1
+  v2:
+    name: my-config-v2
+
+persistentVolumeClaim:
+  name: my-pvc
+  storageClassName: managed-premium
+  size: 5Gi
+
+deployments:
+  v1:
+    name: my-deployment-v1
+    replicas: 2
+    image: nginx:latest
+  v2:
+    name: my-deployment-v2
+    replicas: 2
+    image: nginx:latest
+
+service:
+  name: my-loadbalancer-service
+  type: LoadBalancer
+  port: 80
