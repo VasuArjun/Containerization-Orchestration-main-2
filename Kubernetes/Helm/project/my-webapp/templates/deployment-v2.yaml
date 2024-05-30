@@ -1,0 +1,30 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployments.v2.name }}
+spec:
+  replicas: {{ .Values.deployments.v2.replicas }}
+  selector:
+    matchLabels:
+      app: webapp
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: webapp
+        version: v2
+    spec:
+      containers:
+      - name: nginx-container-v2
+        image: {{ .Values.deployments.v2.image }}
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html-volume
+          mountPath: "/usr/share/nginx/html"
+          readOnly: true
+      volumes:
+      - name: html-volume
+        configMap:
+          name: {{ .Values.configMap.v2.name }}

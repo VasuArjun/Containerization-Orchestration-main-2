@@ -1,0 +1,13 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMap.v2.name }}
+data:
+  index.html: |
+    <html>
+    <head><title>Version 2</title></head>
+    <body>
+      <h1>Welcome to Version 2 of our Application</h1>
+    </body>
+    </html>
